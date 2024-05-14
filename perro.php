@@ -1,49 +1,40 @@
 <?php
-class perro{
-    // declaracion de propiedades
-    private int $peso = 50;
-    private string $raza = 'sin raza';
-    private string $color = 'sin color';
-    private string $nombre = 'sin nombre';
 
-    // Constructor
-    public function __construct($nombre, $raza, $color, $peso) {
-        $this->nombre = $nombre;
-        $this->raza = $raza;
-        $this->color = $color;
-        $this->peso = $peso;
-    }
-    // Getters
-    public function getNombre() {
-        return $this->nombre;
-    }
+class Perro {
 
-    public function getRaza() {
-        return $this->raza;
-    }
+  // Propiedades
+  private string $raza = "sin raza";
+  private int $peso = 0;
+  private string $color = "sin color";
+  private string $nombre = "sin nombre";
 
-    public function getColor() {
-        return $this->color;
-    }
+  // Métodos
+  public function getPropiedades(): string {
+    return "$this->raza,$this->peso,$this->color,$this->nombre";
+  }
 
-    public function getPeso() {
-        return $this->peso;
-    }
+  public function setNombre(string $valor): bool {
+    $mensaje_error = true;
+    (ctype_alpha($valor) && strlen($valor) <= 20) ? $this->nombre = $valor : $mensaje_error = false;
+    return $mensaje_error;
+  }
 
-    // Setters (opcional)
-    public function setNombre($nombre) {
-        $this->nombre = $nombre;
-    }
+  public function setPeso(int $valor): bool {
+    $mensaje_error = true;
+    ($valor >= 0 && $valor <= 60) ? $this->peso = $valor : $mensaje_error = false;
+    return $mensaje_error;
+  } 
+  public function setColor(string $valor): bool {
+    $mensaje_error = true;
+    // Validar aquí el color si es necesario
+    $this->color = $valor;
+    return $mensaje_error;
+  } 
 
-    public function setRaza($raza) {
-        $this->raza = $raza;
-    }
-
-    public function setColor($color) {
-        $this->color = $color;
-    }
-
-    public function setPeso($peso) {
-        $this->peso = $peso;
-    }
+  public function setRaza(string $valor): bool {
+    $mensaje_error = true;
+    // Validar aquí la raza si es necesario
+    $this->raza = $valor;
+    return $mensaje_error;
+  } 
 }
